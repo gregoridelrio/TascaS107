@@ -1,28 +1,31 @@
 <?php
+require_once 'AgeProblemException.php';
+require_once 'NameProblemException.php';
+
 session_start();
 
 try {
-  $nom = $_POST['nom'];
-  $edat = $_POST['edat'];
+  $name = $_POST['name'];
+  $age = $_POST['age'];
 
-  if (empty($nom)) {
-    throw new Exception("El nom no pot estar buit");
+  if (empty($name)) {
+    throw new Exception("Input name can't be empty");
   }
 
-  if (empty($edat)) {
-    throw new Exception("La edat no pot estar buida.");
+  if (empty($age)) {
+    throw new Exception("Input age can't be empty");
   }
 
-  if (!is_numeric($edat)) {
-    throw new Exception("L'edat ha de ser un numero.");
+  if (!is_numeric($age)) {
+    throw new Exception("Age must be a number");
   }
 
-  $_SESSION['nom'] = $nom;
-  $_SESSION['edat'] = $edat;
+  $_SESSION['name'] = $name;
+  $_SESSION['age'] = $age;
 
-  echo "El teu nom es " . $nom . " i tens " . $edat . " anys<br>";
+  echo "Your name is " . $name . " and you are " . $age . " years old<br>";
 
-  echo "Variables de sessió: " . $_SESSION['nom'] . " " . $_SESSION['edat'] . " anys";
+  echo "Session variables: Your name is " . $_SESSION['name'] . " and you are " . $_SESSION['age'] . " years old";
 } catch (Exception $e) {
   echo "Error: " . $e->getMessage();
   exit();
