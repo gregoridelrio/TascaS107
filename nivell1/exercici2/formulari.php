@@ -20,6 +20,15 @@ try {
     throw new Exception("Age must be a number");
   }
 
+  //Nivell 2 Exercici 1
+  if ($age < 18) {
+    throw new AgeProblemException("Access Denied. ", $age);
+  }
+
+  if (strlen($name) < 2) {
+    throw new NameProblemException("Problem with your name. ", $name);
+  }
+
   $_SESSION['name'] = $name;
   $_SESSION['age'] = $age;
 
