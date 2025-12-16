@@ -29,10 +29,23 @@ try {
     throw new NameProblemException("Problem with your name. ", $name);
   }
 
+  //Nivell 3 exercici 1
+  $email = $_POST["email"];
+  $emailPattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+  if (!preg_match($emailPattern, $email)) {
+    throw new Exception("Invalid Email format");
+  }
+
+  $phone = $_POST["phone"];
+  $phonePattern = '/^[0-9]{9}+$/';
+  if (!preg_match($phonePattern, $phone)) {
+    throw new Exception("Invalid Phone format");
+  }
+
   $_SESSION['name'] = $name;
   $_SESSION['age'] = $age;
 
-  echo "Your name is " . $name . " and you are " . $age . " years old<br>";
+  echo "Your name is $name and you are $age years old. Your email is $email and your phone number is $phone<br>";
 
   echo "Session variables: Your name is " . $_SESSION['name'] . " and you are " . $_SESSION['age'] . " years old";
 } catch (Exception $e) {
